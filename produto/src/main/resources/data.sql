@@ -1,0 +1,10 @@
+INSERT INTO PRODUTO(name, description, price) VALUES('caneta', 'caneta esferográfica', '156.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('lápis HB', 'caneta esferográfica', '90.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('caderno', 'Caderno de desenho Canson 200', '23.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('pincel', 'Pincel fino', '1.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('canson A4', 'Papel Canson Layout', '15.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('sketchbook', 'Caderno de rascunho', '8.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('grafite 4B', 'caneta esferográfica', '5.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('lápis 2B', 'Lápis Staedler profissional', '81.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('lapiseira', 'Lapiseira 0.7 Pentel', '1.29');
+INSERT INTO PRODUTO(name, description, price) VALUES('aquarela', 'Aquarela profissional', '70.29');
