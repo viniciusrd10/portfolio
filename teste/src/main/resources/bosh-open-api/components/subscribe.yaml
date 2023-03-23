@@ -1,0 +1,24 @@
+openapi: 3.0.3
+
+components:
+  schemas:
+    WebhookSubscription:
+      type: object
+      properties:
+        ownerId:
+          type: string
+          description: Subscription owner
+        events:
+          type: array
+          items:
+            type: string
+          example:
+            [SubscriptionDto#1, teste#2]
+        callbackUrl:
+          type: string
+          format: uri
+          example: https://google.com
+      required:
+        - callbackUrl
+        - events
+        - ownerId

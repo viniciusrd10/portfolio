@@ -1,0 +1,80 @@
+openapi: '3.0.3'
+info:
+  title: Bosh Thermotechnology API
+  description: "Bosch Thermotechnology: B2B REST Hook Management"
+  version: 0.0.1
+  contact:
+    name: Vinicius Rodrigues
+    email: viniciusrd10@gmail.com
+servers:
+  - url: http://{host}:{port}
+    description: Localhost designeted to local tests.
+    variables:
+      host:
+        enum:
+          - localhost
+          - bosh
+        default: localhost
+        description: this value is assigned by the service provider, in this example `gigantic-server.com`
+      port:
+        enum:
+          - '8080'
+          - '443'
+        default: '8080'
+tags:
+  - name: Subscriptions
+    description: Webhook's subscription management
+
+paths:
+  /subscriptions:
+    post:
+      tags:
+        - Subscriptions
+      summary: Subscribe to an event
+      description:
+        Register a new webhook to notify specific events
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              $ref: 'components/subscribe.yaml#/components/schemas/WebhookSubscription'
+      responses:
+        '201':
+          description: Done! Your subscription was registered!
+      callbacks:
+        applianceFailure:
+          '/components/subscribe.yaml/#/components/schemas/WebhookSubscription/{$request.body#/callbackUrl}':
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: 'components/fail.yaml#/components/schemas/ApplianceFail'
+              responses:
+                '200':
+                  description: Notification sent to event ApplianceFail
+  /subscriptions/id:
+    summary: Retrieve a subscription
+    description:
+      Retrieve a specific webhook subscription
+    get:
+      tags:
+        - Subscriptions
+      operationId: findSubscription
+      parameters:
+          - name: id
+            in: path
+            description: Subscription ID
+            required: true
+            schema:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: 'components/subscribe.yaml#/components/schemas/WebhookSubscription'
